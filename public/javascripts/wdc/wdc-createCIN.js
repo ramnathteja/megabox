@@ -1,6 +1,6 @@
 const request = require("request");
 
-exports.wdcCreateFLX = function (endpoint, headload, payload, callback) {
+exports.wdcCreateCIN = function (endpoint, headload, payload, callback) {
     var options = {
         method: 'POST',
         url: endpoint,

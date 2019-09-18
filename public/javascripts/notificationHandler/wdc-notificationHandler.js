@@ -1,17 +1,22 @@
 const mqtt = require('mqtt');
-const client = mqtt.connect('');
+const client = mqtt.connect('mqtt://203.253.128.164:1883');
+const util = require('util');
 const entityUpdate = require('../fiware/orion-updateData');
 const entityCreate = require('../fiware/orion-postData');
 const resourceMap = require('../resourceMapping/dc-fiware');
 
 //todo: recieve notification from the wdc
 
+var targetTopic = util.format('/oneM2M/req/+/ram/json');
+
 client.on('connect', () => {
-    client.subscribe('')
+    // client.subscribe(targetTopic)
+    client.subscribe('/oneM2M/req/+/ram/json')
 });
 
 client.on('message',(topic, message) => {
-
+    console.log(topic);
+    console.log(message.toString());
 });
 
 //todo: resource map from dc-ngsi

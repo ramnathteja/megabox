@@ -1,6 +1,9 @@
 const request = require("request");
 
-exports.wdcCreateFLX = function (endpoint, headload, payload, callback) {
+//call this function ever time there is a new entry [CALL COMES FROM WEBPAGE]
+
+//after subscription is success then update the register
+exports.wdcSubscription = function (endpoint, headload, payload, callback) {
     var options = {
         method: 'POST',
         url: endpoint,
@@ -14,3 +17,6 @@ exports.wdcCreateFLX = function (endpoint, headload, payload, callback) {
         callback(body);
     });
 }
+
+//if subscription fialed log the error and abort the wirting of registry 
+ 
