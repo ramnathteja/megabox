@@ -3,10 +3,16 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const jsPath = require('jsonpath')
+const fs = require('fs');
+const jsonPath = require('jsonpath');
+const environment = require('./environment/environment');
+const dc_handler = require('./public/javascripts/notificationHandler/wdc-notificationHandler');
+const dc_subscription = require('./public/javascripts/wdc/wdc-subscription');
+// const orion_subscription = require('./public/javascripts/fiware/orion-subscription');
+// const mobius_subscription = require('./public/javascripts/mobius/mobius-subscription');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -24,12 +30,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -44,22 +50,48 @@ app.use(function(err, req, res, next) {
 //check the whole list at the point of subscription
 
 /**
- 1. open the environment file 
+ 1. open the environment/listening file 
  2. check if the subscription exists 
   a. if exist move to the next in the list
   b. if does not exist then subscribe the entry
 
 **/
 
-//subscribe only the newest entry  
+fs.readFile('environment/listening-list.json', (err, data) => {
+  if (err)
+    throw err;
+  let listening = JSON.parse(data);
+  let dc_list = jsonPath.value(listening, '$..dc_listening');
+  let orion_list = jsonPath.value(listening, '$..orion_listening');
+  let mobius_list = jsonPath.value(listening, '$..mobius_listening');
+  dc_list.forEach(element => {
+    dc_subscription.subscribe(element,(msg)=>{
+      /**
+       case1. created a new subscription
+              -->move to next element
+       case2. subscription already exist
+              -->move to next element
+       case3. error
+              -->log the error in subscription error log
+              -->move to the next element  
+       **/
+      console.log(msg);
+    });
+  });
+  orion_list.forEach(element => {
 
-//~~~~~~~~~~~~~~~~~~todo~~~~~~~~~~~~~~~~
+  });
+  mobius_list.forEach(element => {
+    
+  });
+});
+/**
+ ~~~~~~~~~~~~~~~~~~todo~~~~~~~~~~~~~~~~
+      subscribe only the newest entry  
+**/
 
+dc_handler.notificationHandler;//todo: consoling part
 
-//todo list of subscription resources
-//go through each list of json files
-//then call the subcription check or subscription create
-//listen to all subscriptions 
 
 
 module.exports = app;

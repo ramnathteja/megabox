@@ -1,5 +1,5 @@
 const environment_development = {
-
+  dc_acpValue:'SM',
   dc_baseUrl: 'http://127.0.0.1:7599/wdc_base',
   dc_subscriptionServer: 'mqtt://203.253.128.164:1883',
   dc_subscriptionTag: '/oneM2M/req/+/ram/json',

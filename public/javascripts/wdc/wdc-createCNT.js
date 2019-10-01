@@ -2,7 +2,7 @@ const request = require("request");
 const environment = require('../../../environment/environment');
 
 
-exports.wdcCreateCNT = function (endpoint, headload, payload, callback) {
+exports.createCNT = function (endpoint, headload, payload, callback) {
     var options = {
         method: 'POST',
         url: endpoint,

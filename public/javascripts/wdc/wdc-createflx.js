@@ -2,7 +2,7 @@ const request = require("request");
 const environment = require('../../../environment/environment');
 
 
-exports.wdcCreateFLX = function (endpoint, headload, payload, callback) {
+exports.createFLX = function (endpoint, headload, payload, callback) {
     var options = {
         method: 'POST',
         url: endpoint,
