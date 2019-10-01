@@ -1,4 +1,6 @@
 const request = require("request");
+const environment = require('../../../environment/environment');
+
 
 exports.wdcCreateCNT = function (endpoint, headload, payload, callback) {
     var options = {

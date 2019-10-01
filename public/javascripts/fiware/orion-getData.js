@@ -1,4 +1,6 @@
 const request = require("request");
+const environment = require('../../../environment/environment');
+
 
 exports.orionGetdata = function (endpoint, query, headload, callback) {
   var options = {

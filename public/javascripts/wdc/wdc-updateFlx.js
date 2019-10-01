@@ -1,4 +1,5 @@
 var request = require("request");
+const environment = require('../../../environment/environment');
 
 var options = { method: 'PUT',
   url: 'http://{{mp_url}}/{{cb}}/cnt/flx-wb1iIeL2AO',

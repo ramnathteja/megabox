@@ -1,4 +1,5 @@
 var request = require("request");
+const environment = require('../../../environment/environment');
 
 var options = { method: 'GET',
   url: 'http://192.168.128.198:7599/wdc_base/sync_parking/parkingLot_99',

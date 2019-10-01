@@ -3,7 +3,7 @@ const jsonpath = require('jsonpath');
 exports.wdcToNgsi = function(dcResponse, callback) {
     var mappedNGSI = {
         "id": jsonpath.value(dcResponse, '$..rn'),
-        "type": "ParkingSpot",
+        "type": jsonpath.value(dcResponse,'$..type'),
         "category":{
             "type":"Text",
             "value": jsonpath.value(dcResponse, '$..category')

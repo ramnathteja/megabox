@@ -1,9 +1,10 @@
 const request = require("request");
+const environment = require('../../../environment/environment');
 
 //call this function ever time there is a new entry [CALL COMES FROM WEBPAGE]
 
 //after subscription is success then update the register
-exports.wdcSubscription = function (endpoint, headload, payload, callback) {
+exports.wdcSubscription = function (endpoint, headload, callback) {
     var options = {
         method: 'POST',
         url: endpoint,
@@ -17,7 +18,7 @@ exports.wdcSubscription = function (endpoint, headload, payload, callback) {
             'm2m:sub':
             {
                 enc: { net: [1, 3], chty: [4] },
-                nu: [payload],
+                nu: [environment.dc_subscription],
                 nct: 1
             }
         }

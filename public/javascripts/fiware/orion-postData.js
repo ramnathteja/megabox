@@ -1,9 +1,10 @@
 const request = require("request");
+const environment = require('../../../environment/environment');
 
 exports.orionPostData = function (payload, callback) {
     var options = {
         method: 'POST',
-        url: 'http://203.253.128.164:1026/v2/entities/',
+        url: environment.orionPostData,
         headers:
         {
 
