@@ -7,8 +7,20 @@ exports.wdcSubscription = function (endpoint, headload, payload, callback) {
     var options = {
         method: 'POST',
         url: endpoint,
-        headers: headload,
-        body: payload
+        headers: {
+            'Content-Type': 'application/json',
+            'X-M2M-Origin': headload,
+            'X-M2M-RI': '12345',
+            Accept: 'application/json'
+        },
+        body: {
+            'm2m:sub':
+            {
+                enc: { net: [1, 3], chty: [4] },
+                nu: [payload],
+                nct: 1
+            }
+        }
     };
 
     request(options, function (error, response, body) {
@@ -19,4 +31,5 @@ exports.wdcSubscription = function (endpoint, headload, payload, callback) {
 }
 
 //if subscription fialed log the error and abort the wirting of registry 
- 
+
+

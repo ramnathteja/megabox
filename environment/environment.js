@@ -1,9 +1,11 @@
 const environment_development={
-   
+  dc_baseUrl:'http://127.0.0.1:7599/wdc_base',
+
+  
 };
 
 const environment_production={
-  
+  dc_baseUrl:'',
 };
 
 

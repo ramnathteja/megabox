@@ -1,8 +1,11 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const fs = require('fs');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const jsPath = require('jsonpath')
+const checkList = fs.readFileSync('');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -37,5 +40,16 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//todo list of subscription resources \
+//go through each list of json files then call the subcription check or subscription create
+var dcListing = jsPath.apply(checkList, '$..dc', function(value) {
+  //check dc subscription with every value
+});
+
+var fiwareListing = jsPath.apply(checkList, '$..fiware', function(value) {
+  //check dc subscription with every value
+});
+
 
 module.exports = app;

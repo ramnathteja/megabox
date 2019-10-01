@@ -29,7 +29,7 @@ var payload = {
         [{
             id: 'spot_678',
             location:
-            {
+            { 
                 type: 'geo:json',
                 value: { type: 'Point', coordinates: [127.129058, 37.613176] }
             }
