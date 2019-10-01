@@ -18,7 +18,7 @@ exports.wdcSubscription = function (endpoint, headload, callback) {
             'm2m:sub':
             {
                 enc: { net: [1, 3], chty: [4] },
-                nu: [environment.dc_subscription],
+                nu: [environment.dc_subscriptionServer.concat(environment.dc_subscriptionTag)],
                 nct: 1
             }
         }

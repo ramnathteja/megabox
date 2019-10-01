@@ -1,11 +1,9 @@
 const createError = require('http-errors');
-const fs = require('fs');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const jsPath = require('jsonpath')
-const checkList = fs.readFileSync('');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -41,15 +39,27 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-//todo list of subscription resources \
-//go through each list of json files then call the subcription check or subscription create
-var dcListing = jsPath.apply(checkList, '$..dc', function(value) {
-  //check dc subscription with every value
-});
 
-var fiwareListing = jsPath.apply(checkList, '$..fiware', function(value) {
-  //check dc subscription with every value
-});
+//two part subscripton
+//check the whole list at the point of subscription
+
+/**
+ 1. open the environment file 
+ 2. check if the subscription exists 
+  a. if exist move to the next in the list
+  b. if does not exist then subscribe the entry
+
+**/
+
+//subscribe only the newest entry  
+
+//~~~~~~~~~~~~~~~~~~todo~~~~~~~~~~~~~~~~
+
+
+//todo list of subscription resources
+//go through each list of json files
+//then call the subcription check or subscription create
+//listen to all subscriptions 
 
 
 module.exports = app;
