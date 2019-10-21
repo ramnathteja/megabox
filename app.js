@@ -75,7 +75,7 @@ fs.readFile('environment/listening-list.json', (err, data) => {
               -->log the error in subscription error log
               -->move to the next element  
        **/
-      console.log(msg);
+      console.log("sub return msg");
     });
   });
   orion_list.forEach(element => {
@@ -85,12 +85,14 @@ fs.readFile('environment/listening-list.json', (err, data) => {
     
   });
 });
+
+console.log("came out of the read file !!");
 /**
  ~~~~~~~~~~~~~~~~~~todo~~~~~~~~~~~~~~~~
       subscribe only the newest entry  
 **/
 
-dc_handler.notificationHandler;//todo: consoling part
+ dc_handler.notificationHandler();//todo: consoling part
 
 
 

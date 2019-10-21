@@ -2,10 +2,10 @@ const request = require("request");
 const environment = require('../../../environment/environment');
 
 
-exports.orionUpdateData = function (endpoint, payload, callback) {
+exports.orionUpdateData = function (payload, callback) {
     var options = {
         method: 'POST',
-        url: endpoint,
+        url: environment.orion_updateData,
         headers:
         {
             'Content-Type': 'application/json'
@@ -16,7 +16,7 @@ exports.orionUpdateData = function (endpoint, payload, callback) {
 
     request(options, function (error, response, body) {
         // if (error) throw new Error(error);
-
+        console.log(response);
         callback(body);
     });
 }
