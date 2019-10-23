@@ -7,12 +7,9 @@ const client = mqtt.connect(environment.dc_subscriptionServer);
 
 
 exports.notificationHandler = function () {
-
-    console.log('came in to notification');
-
     //recieve notification from the wdc
     client.on('connect', () => {
-        console.log("mqtt connected");
+        console.log(".............MQTT connection for wdc established\n");
         client.subscribe(environment.dc_subscriptionTag);
     });
     client.on('message', (topic, message) => {
@@ -25,7 +22,8 @@ exports.notificationHandler = function () {
                     [mappedNGSI]
             }
             //     //updata orion
-            entityUpdate.orionUpdateData(payload, (body) => {
+            entityCreate.orionPostData(payload, (body) => {
+                //todo if error probably have to create entity first
                 console.log(body);
                 //todo:log errors
             });

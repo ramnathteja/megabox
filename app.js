@@ -46,8 +46,6 @@ app.use(function (err, req, res, next) {
 });
 
 
-//two part subscripton
-//check the whole list at the point of subscription
 
 /**
  1. open the environment/listening file 
@@ -65,7 +63,7 @@ fs.readFile('environment/listening-list.json', (err, data) => {
   let orion_list = jsonPath.value(listening, '$..orion_listening');
   let mobius_list = jsonPath.value(listening, '$..mobius_listening');
   dc_list.forEach(element => {
-    dc_subscription.subscribe(element,(msg)=>{
+    dc_subscription.subscribe(element, (msg) => {
       /**
        case1. created a new subscription
               -->move to next element
@@ -82,7 +80,7 @@ fs.readFile('environment/listening-list.json', (err, data) => {
 
   });
   mobius_list.forEach(element => {
-    
+
   });
 });
 
@@ -92,7 +90,7 @@ console.log("came out of the read file !!");
       subscribe only the newest entry  
 **/
 
- dc_handler.notificationHandler();//todo: consoling part
+dc_handler.notificationHandler();//todo: consoling part
 
 
 

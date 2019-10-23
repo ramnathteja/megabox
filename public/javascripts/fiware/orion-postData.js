@@ -4,7 +4,7 @@ const environment = require('../../../environment/environment');
 exports.orionPostData = function (payload, callback) {
     var options = {
         method: 'POST',
-        url: environment.orionPostData,
+        url: environment.orion_postData,
         headers:
         {
 
