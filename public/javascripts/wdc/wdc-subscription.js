@@ -5,7 +5,6 @@ const environment = require('../../../environment/environment');
 
 //after subscription is success then update the register
 exports.subscribe = function (endpoint, callback) {
-    console.log("this is the acp  value",environment.dc_acpValue);
     var options = {
         method: 'POST',
         url: endpoint,
@@ -19,6 +18,7 @@ exports.subscribe = function (endpoint, callback) {
         ({
             'm2m:sub':
             {
+                rn:endpoint.substring(endpoint.lastIndexOf("/")+1),
                 enc: { net: [1, 3], chty: [4] },
                 nu: [environment.dc_subscriptionServer.concat(environment.dc_subscriptionTag)],
                 nct: 1

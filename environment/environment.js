@@ -4,7 +4,7 @@ const environment_development = {
   dc_subscriptionServer: 'mqtt://203.253.128.164:1883',
   dc_subscriptionTag: '/ram?ct=json',
   orion_postData: 'http://203.253.128.164:1026/v2/entities/',
-  orion_updateData: 'http://203.253.128.164:1026/v2/op/update'
+  orion_updateData: 'http://203.253.128.164:1026/v2/entities/'
 
 };
 

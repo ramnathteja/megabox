@@ -73,7 +73,7 @@ fs.readFile('environment/listening-list.json', (err, data) => {
               -->log the error in subscription error log
               -->move to the next element  
        **/
-      console.log("sub return msg");
+      console.log(msg);
     });
   });
   orion_list.forEach(element => {

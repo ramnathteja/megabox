@@ -16,17 +16,25 @@ exports.notificationHandler = function () {
         var dcResponse = JSON.parse(message.toString());
         // //resource map from dc-ngsi
         resourceMap.wdcToNgsi(dcResponse, (mappedNGSI) => {
-            var payload = {
-                actionType: 'update',
-                entities:
-                    [mappedNGSI]
-            }
-            //     //updata orion
-            entityCreate.orionPostData(payload, (body) => {
-                //todo if error probably have to create entity first
-                console.log(body);
-                //todo:log errors
+            const payload = JSON.parse(JSON.stringify(mappedNGSI));
+            var entityID = payload.id;
+            delete payload.id;
+            delete payload.type;
+            //updata entity
+            entityUpdate.orionUpdateData(entityID, payload, (statusCode) => {
+                if (statusCode != 204) {
+                    console.log("......Update to orion is unsuccessful");
+                    //create entity
+                    entityCreate.orionPostData(mappedNGSI, (body) => {
+                        //todo if error probably have to create entity first
+                        console.log(body);
+                        //todo:log errors
+                    });
+                } else {
+                    console.warn("......Update into orion is successful");
+                }
             });
+
         });
     });
 
