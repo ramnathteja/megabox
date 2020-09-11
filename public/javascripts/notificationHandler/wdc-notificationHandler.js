@@ -5,7 +5,9 @@ const entityUpdate = require('../fiware/orion-updateData');
 const resourceMap = require('../resourceMapping/dc-fiware');
 const client = mqtt.connect(environment.dc_subscriptionServer);
 
-
+/**
+    TODO: need to send ack to dc once notifcation is received
+ */
 exports.notificationHandler = function () {
     //recieve notification from the wdc
     client.on('connect', () => {
@@ -20,18 +22,19 @@ exports.notificationHandler = function () {
             var entityID = payload.id;
             delete payload.id;
             delete payload.type;
+            console.log(entityID);
             //updata entity
             entityUpdate.orionUpdateData(entityID, payload, (statusCode) => {
-                if (statusCode != 204) {
-                    console.log("......Update to orion is unsuccessful");
+                if (statusCode != 204) { //TODO: and have to check if !204 is because entity was not created, if not then catelog the error!!
+                    console.warn(entityID + "........updating into orion is unsuccessful");
                     //create entity
                     entityCreate.orionPostData(mappedNGSI, (body) => {
-                        //todo if error probably have to create entity first
+                        //TODO if error probably have to create entity first
                         console.log(body);
-                        //todo:log errors
+                        //TODO:log errors
                     });
                 } else {
-                    console.warn("......Update into orion is successful");
+                    console.warn(entityID + "........is updated into orion successful");
                 }
             });
 

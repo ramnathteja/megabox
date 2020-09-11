@@ -1,0 +1,15 @@
+{
+  
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "type": "text-and-comment",
+            "foreground": "black",
+            "background": "yellow"
+        },
+        "FIXME": {
+            "type": "text-and-comment",
+            "foreground": "black",
+            "background": "red"
+        }
+    }
+}

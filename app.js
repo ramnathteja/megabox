@@ -8,7 +8,7 @@ const jsonPath = require('jsonpath');
 const environment = require('./environment/environment');
 const dc_handler = require('./public/javascripts/notificationHandler/wdc-notificationHandler');
 const dc_subscription = require('./public/javascripts/wdc/wdc-subscription');
-// const orion_subscription = require('./public/javascripts/fiware/orion-subscription');
+const orion_subscription = require('./public/javascripts/fiware/orion-subscription');
 // const mobius_subscription = require('./public/javascripts/mobius/mobius-subscription');
 
 const indexRouter = require('./routes/index');
@@ -73,25 +73,31 @@ fs.readFile('environment/listening-list.json', (err, data) => {
               -->log the error in subscription error log
               -->move to the next element  
        **/
-      console.log(msg);
+      console.log(element + '........' + msg + '\n');
     });
   });
   orion_list.forEach(element => {
-
+    orion_subscription.subscribe(element.description, element.id, element.type, element.condition_attr, element.notification_attr,(msg)=>{
+      console.log(msg+'\n');  
+    });
   });
   mobius_list.forEach(element => {
 
   });
 });
 
-console.log("came out of the read file !!");
-/**
- ~~~~~~~~~~~~~~~~~~todo~~~~~~~~~~~~~~~~
-      subscribe only the newest entry  
-**/
 
-dc_handler.notificationHandler();//todo: consoling part
+
+dc_handler.notificationHandler();//TODO: consoling part
 
 
 
 module.exports = app;
+
+/*
+FIXME: if an entity is created in consiqunetly to a subscribed dc resource, and if that entity is again subscribed to create a flx
+ FIXME: the result would a continous loop of notification->updation->notification
+
+TODO: Add discovery based machanisim for adding resources; also check for sub containers in the flex
+
+*/

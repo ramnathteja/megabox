@@ -16,7 +16,7 @@ exports.orionPostData = function (payload, callback) {
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
 
-        callback(request.statusCode);
+        callback(body); //FIXME: when new entity is created the statuscode is empyt/undefined
     });
 }
 

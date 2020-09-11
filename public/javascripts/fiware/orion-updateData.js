@@ -17,7 +17,6 @@ exports.orionUpdateData = function (enitityID, payload, callback) {
 
     request(options, function (error, response, body) {
         // if (error) throw new Error(error);
-        // console.log(response);
         callback(response.statusCode);
     });
 }
