@@ -21,7 +21,7 @@ exports.subscribe = function (endpoint, callback) {
                     'net': [1, 3],
                     'chty': [4]
                 },
-                'nu': ["mqtt://203.253.128.179:1883/ram?ct=json"],
+                'nu': [(environment.dc_subscriptionServer).concat(environment.dc_subscriptionTag)],
                 'nct': 1
             }
         })

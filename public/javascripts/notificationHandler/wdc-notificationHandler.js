@@ -10,7 +10,7 @@ exports.notificationHandler = function () {
     //recieve notification from the wdc
     client.on('connect', (connack) => {
         console.log("\n#################---> MQTT connection with ", environment.dc_subscriptionServer ," has been established\n");
-        client.subscribe(environment.dc_subscriptionTag, (err, granted)=>{
+        client.subscribe(environment.dc_listeningTag, (err, granted)=>{
             console.warn("#################---> Errors while subscription : ", err,"\n");
             console.log("#################---> Subscribed successfully to topic  : ", granted[0].topic,"\n");
         });

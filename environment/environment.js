@@ -3,6 +3,7 @@ const environment_development = {
   dc_baseUrl: 'http://203.253.128.179:7599/wdc_base',
   dc_subscriptionServer: 'mqtt://203.253.128.179:1883',
   dc_subscriptionTag: '/ram?ct=json',
+  dc_listeningTag:'/oneM2M/req/+/ram/#',
   orion_postData: 'http://203.253.128.164:1026/v2/entities/',
   orion_updateData: 'http://203.253.128.164:1026/v2/entities/'
 
