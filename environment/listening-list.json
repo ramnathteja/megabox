@@ -1,7 +1,6 @@
 {
     "dc_listening": [
-        "http://127.0.0.1:7599/wdc_base/smart_parking2/flx-aqp1d3q1pN",
-        "http://127.0.0.1:7599/wdc_base/smart_parking2/flx-QiikhmXkfD"
+        "http://203.253.128.179:7599/wdc_base/KETIParkingGroup1/fopt"
     ],
     "orion_listening": [],
     "mobius_listening": []

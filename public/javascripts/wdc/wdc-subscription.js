@@ -14,20 +14,22 @@ exports.subscribe = function (endpoint, callback) {
             'X-M2M-RI': '12345',
             'Accept': 'application/json'
         },
-        body: JSON.stringify
-        ({
-            'm2m:sub':
-            {
-                rn:endpoint.substring(endpoint.lastIndexOf("/")+1),
-                enc: { net: [1, 3], chty: [4] },
-                nu: [environment.dc_subscriptionServer.concat(environment.dc_subscriptionTag)],
-                nct: 1
+        body: JSON.stringify({
+            'm2m:sub': {
+                'rn': endpoint.substring(endpoint.lastIndexOf("/",endpoint.lastIndexOf("/")-1) +1, endpoint.lastIndexOf("/")), //todo: change the lastIndex to 2nd last index
+                'enc': {
+                    'net': [1, 3],
+                    'chty': [4]
+                },
+                'nu': ["mqtt://203.253.128.179:1883/ram?ct=json"],
+                'nct': 1
             }
         })
     };
 
     request(options, function (error, response, body) {
-        if(error) {
+        console.log(options);
+        if (error) {
             console.log(error);
         }
 
@@ -36,5 +38,3 @@ exports.subscribe = function (endpoint, callback) {
 }
 // todo if subscription failed we have to create CNT if it failed create AE
 //if subscription fialed log the error and abort the wirting of registry 
-
-
