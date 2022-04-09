@@ -12,7 +12,7 @@
     "fs": "0.0.1-security",
     "http-errors": "~1.6.3",
     "jsonpath": "^1.0.2",
-    "moment": "^2.29.0",
+    "moment": "^2.29.2",
     "morgan": "~1.9.1",
     "mqtt": "^3.0.0",
     "pug": "^3.0.0",
